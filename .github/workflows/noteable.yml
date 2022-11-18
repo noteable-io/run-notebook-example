@@ -1,0 +1,29 @@
+name: Execute notebook
+
+on: [push]
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v3
+    - uses: mseal/run-noteable-notebook@v1
+      env:
+        RUNNER: ${{ toJson(runner) }}
+        SECRETS: ${{ toJson(secrets) }}
+        GITHUB: ${{ toJson(github) }}
+      with:
+        notebook: "https://app.noteable.io/f/9b92ef52-29af-497a-bbd1-d14c18b27e5d/What-can-you-do-in-a-Noteable-notebook.ipynb"
+        # Alternatively ==> notebook: "9b92ef52-29af-497a-bbd1-d14c18b27e5d"
+        params: "PATHTOPARAMS.json"
+        isReport: False
+        poll: True
+    - uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: output
+        path: ${{ RUNNER.temp }}/nb-runner
+      env:
+        RUNNER: ${{ toJson(runner) }}

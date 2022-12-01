@@ -15,7 +15,7 @@ jobs:
         SECRETS: ${{ toJson(secrets) }}
         GITHUB: ${{ toJson(github) }}
       with:
-        notebook: "https://app.noteable.io/f/9b92ef52-29af-497a-bbd1-d14c18b27e5d/What-can-you-do-in-a-Noteable-notebook.ipynb"
+        notebook: "https://app.noteable-integration.us/f/0c328cbd-93eb-4310-a055-1c302033fd4d/test-with-gh-action-empty-notebook.ipynb"
         # Alternatively ==> notebook: "noteable://9b92ef52-29af-497a-bbd1-d14c18b27e5d"
         params: "PATHTOPARAMS.json"
         isReport: False
